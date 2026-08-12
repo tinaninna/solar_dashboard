@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Generator Monitor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="title-block">
+      <div class="eyebrow">Telemetry / Simulated Site</div>
+      <h1>Solar Generator Monitor</h1>
+    </div>
+    <div class="system-badge"><span class="dot"></span> SYSTEM OK</div>
+  </header>
+
+  <div class="cards">
+    <div class="card solar">
+      <div class="label">Solar Generation</div>
+      <div class="value" id="solarVal">0.0<span class="unit">kW</span></div>
+      <div class="sub">of 10.0 kW capacity</div>
+    </div>
+    <div class="card load">
+      <div class="label">Load</div>
+      <div class="value" id="loadVal">0.0<span class="unit">kW</span></div>
+      <div class="sub">cycles every 3s</div>
+    </div>
+    <div class="card inverter">
+      <div class="label">Inverter Output</div>
+      <div class="value" id="inverterVal">0.0<span class="unit">kW</span></div>
+      <div class="sub">of 10.0 kW capacity</div>
+    </div>
+    <div class="card">
+      <div class="label">Last Update</div>
+      <div class="value" id="clockVal" style="font-size:22px;">--:--:--</div>
+      <div class="sub" id="updateSub">waiting for first tick</div>
+    </div>
+
+    <div class="battery-panel">
+      <div class="battery-gauge">
+        <div class="battery-fill" id="batteryFill" style="height:50%;"></div>
+      </div>
+      <div class="battery-info">
+        <div class="label">Battery State of Charge</div>
+        <div class="value-row">
+          <div class="value" id="socVal">50.0%</div>
+          <span class="status-chip idle" id="batteryStatusChip">idle</span>
+        </div>
+      </div>
+      <div class="timestamp">
+        <div>10 kWh capacity</div>
+        <div class="tval">Simulated telemetry — updates every 3s</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-panel">
+      <h3>Solar Generation vs Load</h3>
+      <div class="chart-container"><canvas id="powerChart"></canvas></div>
+    </div>
+    <div class="chart-panel">
+      <h3>Battery State of Charge</h3>
+      <div class="chart-container"><canvas id="batteryChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="demo-note">MOCK DATA — no physical generator connected. All values simulated client-side.</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
